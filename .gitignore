@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# production
+/build
+
+# env files
+.env
+.env*.local
+
+# intellij
+/.idea/

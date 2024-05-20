@@ -1,0 +1,23 @@
+{
+  "name": "n8body.dev_grammy-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "pnpm tsc",
+    "run": "node ./build/bot.js",
+    "start": "pnpm tsc && node ./build/bot.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "grammy": "^1.23.0"
+  }
+}
