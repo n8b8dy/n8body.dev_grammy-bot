@@ -8,7 +8,7 @@ export const helpHandler: CommandMiddleware<Context> = async (ctx) => {
     '  <b>/start</b> — shows initial message',
     '  <b>/help</b>, <b>/commands</b> — shows this message',
     '  <b>/bot</b> — shows story about the bot (AI powered, xd)',
-    '  <b>/me</b> — shows information about the user',
+    '  <b>/me</b> — shows information about the user (warning: it may show some data, that you don\'t want everyone to see)',
     '  <b>/chat</b> — shows information about the chat (cannot be used in private chats)',
     '',
     '<b>— Sticker Commands:</b>',

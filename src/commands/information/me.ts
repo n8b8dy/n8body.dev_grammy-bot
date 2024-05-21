@@ -16,7 +16,7 @@ export const meHandler: CommandMiddleware<Context> = async (ctx) => {
 
   try {
     const profilePhotos = await ctx.api.getUserProfilePhotos(ctx.from.id)
-    const mediaGroup  = profilePhotos.photos.slice(0, 10).map(photoSize => InputMediaBuilder.photo(photoSize[0].file_id))
+    const mediaGroup = profilePhotos.photos.slice(0, 10).map(photoSize => InputMediaBuilder.photo(photoSize[0].file_id))
 
     mediaGroup[0].caption = text
     mediaGroup[0].parse_mode = 'HTML'
