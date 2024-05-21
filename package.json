@@ -2,21 +2,30 @@
   "name": "n8body.dev_grammy-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/bot.js",
+  "type": "module",
   "scripts": {
-    "compile": "pnpm tsc",
-    "run": "node ./build/bot.js",
-    "start": "pnpm tsc && node ./build/bot.js",
+    "build": "rollup -c",
+    "start": "rollup -c && node build/bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.12.12",
+    "esbuild": "^0.21.3",
+    "prisma": "^5.14.0",
+    "rollup": "^4.17.2",
+    "rollup-plugin-esbuild": "^6.1.1",
+    "rollup-plugin-typescript-paths": "^1.5.0",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.2",
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@prisma/client": "^5.14.0",
     "dotenv": "^16.4.5",
     "grammy": "^1.23.0"
   }
