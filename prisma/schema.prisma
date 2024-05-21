@@ -26,3 +26,11 @@ model StartSticker {
   fileId String @id
   name   String @unique
 }
+
+model BotStory {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  content            String
+  generatedForUserId Int?
+}
