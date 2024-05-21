@@ -22,13 +22,13 @@ export const meHandler: CommandMiddleware<Context> = async (ctx) => {
     mediaGroup[0].parse_mode = 'HTML'
 
     await ctx.replyWithMediaGroup(mediaGroup, {
-      reply_parameters: { message_id: ctx.msg.message_id },
+      reply_parameters: { message_id: ctx.msgId },
     })
 
   } catch (error) {
     if (error instanceof GrammyError) return await ctx.reply(text, {
       parse_mode: 'HTML',
-      reply_parameters: { message_id: ctx.msg.message_id },
+      reply_parameters: { message_id: ctx.msgId },
     })
 
     throw error

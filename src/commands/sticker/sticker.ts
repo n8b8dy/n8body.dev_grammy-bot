@@ -7,13 +7,13 @@ export const stickerHandler: CommandMiddleware<Context> = async (ctx) => {
   if (!stickerId) return await ctx.reply('You didn\'t provide a sticker ID.')
 
   try {
-    await ctx.api.sendSticker(ctx.chat.id, stickerId, {
-      reply_parameters: { message_id: ctx.msg.message_id },
+    await ctx.replyWithSticker(stickerId, {
+      reply_parameters: { message_id: ctx.msgId },
     })
   } catch (error) {
     if (error instanceof GrammyError) return await ctx.reply(`Couldn't find a sticker with ID <code>${stickerId}</code>!`, {
       parse_mode: 'HTML',
-      reply_parameters: { message_id: ctx.msg.message_id },
+      reply_parameters: { message_id: ctx.msgId },
     })
 
     throw error

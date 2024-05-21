@@ -11,6 +11,6 @@ sticker.on('message:sticker', async (ctx) => {
 
   await ctx.reply(text, {
     parse_mode: 'HTML',
-    reply_parameters: { message_id: ctx.msg.message_id },
+    reply_parameters: { message_id: ctx.msgId },
   })
 })

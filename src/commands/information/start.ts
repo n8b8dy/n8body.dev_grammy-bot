@@ -15,7 +15,7 @@ export const startHandler: CommandMiddleware<Context> = async (ctx) => {
   }))[0]
 
   await ctx.reply(text, {
-    reply_parameters: { message_id: ctx.msg.message_id },
+    reply_parameters: { message_id: ctx.msgId },
   })
-  await ctx.api.sendSticker(ctx.chat.id, sticker.fileId)
+  await ctx.replyWithSticker(sticker.fileId)
 }
