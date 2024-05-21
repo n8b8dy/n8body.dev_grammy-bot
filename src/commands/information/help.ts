@@ -4,29 +4,30 @@ export const helpHandler: CommandMiddleware<Context> = async (ctx) => {
   const text = [
     'Here\'s a list of all the functionality of the bot:',
     '',
-    '*— Information Commands:*',
-    '  */start* - shows initial message',
-    '  */help*, */commands* - shows this message',
-    '  */bot *- shows story about the bot (AI powered, xd)',
-    '  */me* - shows information about the user',
-    '  */chat* - shows information about the chat (cannot be used in private chats)',
+    '<b>— Information Commands:</b>',
+    '  <b>/start</b> — shows initial message',
+    '  <b>/help</b>, <b>/commands</b> — shows this message',
+    '  <b>/bot</b> — shows story about the bot (AI powered, xd)',
+    '  <b>/me</b> — shows information about the user',
+    '  <b>/chat</b> — shows information about the chat (cannot be used in private chats)',
     '',
-    '*— Sticker Commands:*',
-    '  *[sticker]* - returns the sticker\'s ID (can be used only in private chats)',
-    '  */sticker [ID]* - shows the sticker with the provided ID',
-    '*— Entertaining Commands:*',
-    '  */meme [?:AMOUNT]* - sends a random meme or the provided amount of memes',
+    '<b>— Sticker Commands:</b>',
+    '  <b>[sticker]</b> — returns the sticker\'s ID (can be used only in private chats)',
+    '  <b>/sticker [ID]</b> — shows the sticker with the provided ID',
     '',
-    '*— Admin Commands:*',
+    '<b>— Entertaining Commands:</b>',
+    '  <b>/meme [?:AMOUNT]</b> — sends a random meme or the provided amount of memes',
+    '',
+    '<b>— Admin Commands:</b>',
     '  (under construction)',
     '',
-    '*— Creator Commands...* you don\'t need them',
+    '<b>— Creator Commands...</b> you don\'t need them',
     '',
-    '||And some *easter eggs*!||',
-  ].join('\n').replace(/([-().!\[\]])/g, `\\$1`)
+    '<tg-spoiler>And some <b>easter eggs</b>!</tg-spoiler>',
+  ].join('\n')
 
   await ctx.reply(text, {
-    parse_mode: 'MarkdownV2',
+    parse_mode: 'HTML',
     reply_parameters: { message_id: ctx.msg.message_id }
   })
 }
