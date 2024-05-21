@@ -14,7 +14,7 @@ datasource db {
 }
 
 model User {
-  id        String  @id
+  id        Int     @id
   isBot     Boolean
   firstName String
   lastName  String?
