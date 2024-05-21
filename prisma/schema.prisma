@@ -21,3 +21,8 @@ model User {
   username  String?
   isPremium Boolean
 }
+
+model StartSticker {
+  fileId String @id
+  name   String @unique
+}
