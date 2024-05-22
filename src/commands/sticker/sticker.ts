@@ -4,7 +4,9 @@ import { GrammyError } from 'grammy'
 export const stickerHandler: CommandMiddleware<Context> = async (ctx) => {
   const stickerId = ctx.match.trim().split(' ')[0]
 
-  if (!stickerId) return await ctx.reply('You didn\'t provide a sticker ID.')
+  if (!stickerId) return await ctx.reply('You didn\'t provide a sticker ID.', {
+    reply_parameters: { message_id: ctx.msgId },
+  })
 
   try {
     await ctx.replyWithSticker(stickerId, {

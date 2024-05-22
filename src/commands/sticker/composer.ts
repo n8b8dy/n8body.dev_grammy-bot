@@ -7,7 +7,7 @@ sticker.command('sticker', stickerHandler)
 sticker.on('message:sticker', async (ctx) => {
   if (ctx.chat.type !== 'private') return
 
-  const text = `Sticker's ID is: <code>${ctx.msg.sticker.file_id}|</code>`
+  const text = `Sticker's ID is: <code>${ctx.msg.sticker.file_id}</code>`
 
   await ctx.reply(text, {
     parse_mode: 'HTML',
