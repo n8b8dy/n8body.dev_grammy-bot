@@ -1,11 +1,10 @@
+import type { BotContext } from '@/types/bot'
 import { Composer } from 'grammy'
+import { creatorVerificationMiddleware } from '@/commands/creator/middleware'
 import { addStartStickerHandler } from '@/commands/creator/addStartSticker'
 
-export const creator = new Composer()
+export const creator = new Composer<BotContext>()
 
-creator.use(async (ctx, next) => {
-  if (ctx.from?.id !== Number(process.env.CREATOR_ID as string)) return
-  await next()
-})
+creator.use(creatorVerificationMiddleware)
 
 creator.command(['addStartSticker', 'addStartStickers'], addStartStickerHandler)
