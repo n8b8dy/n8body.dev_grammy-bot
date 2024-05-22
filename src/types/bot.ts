@@ -7,7 +7,7 @@ export interface BotConfig {
     proj: string
   },
   creatorId: number
-  testLand: number
+  testLandId: number
   memeEndpoint: string
 }
 
