@@ -10,7 +10,7 @@ export async function contextMiddleware(ctx: BotContext, next: NextFunction){
     },
     creatorId: Number(process.env.CREATOR_ID),
     testLandId: Number(process.env.TESTLAND_ID),
-    memeEndpoint: process.env.OPENAI_PROJ,
+    memeEndpoint: process.env.MEME_ENDPOINT,
   }
 
   await next();
