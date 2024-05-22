@@ -1,4 +1,5 @@
-import type { CommandMiddleware, Context } from 'grammy'
+import type { CommandContext } from 'grammy'
+import type { BotContext } from '@/types/bot'
 import { eRT } from '@/utils/text'
 
 type MemeResponse = {
@@ -9,12 +10,12 @@ type MemeResponse = {
   }>
 }
 
-export const memeHandler: CommandMiddleware<Context> = async (ctx) => {
+export async function memeHandler(ctx: CommandContext<BotContext>) {
   let amount = Number(ctx.match.trim().split(' ')[0])
   if (Number.isNaN(amount) || amount > 8 || amount < 1) amount = 1
 
   try {
-    const resp = await fetch(`${process.env.MEME_ENDPOINT as string}/gimme/${amount}`)
+    const resp = await fetch(`${ctx.config.memeEndpoint}/gimme/${amount}`)
     const data: MemeResponse = await resp.json()
 
     let lastMsgId = ctx.msgId
@@ -27,14 +28,14 @@ export const memeHandler: CommandMiddleware<Context> = async (ctx) => {
 
       const reply = await ctx.reply(text, {
         parse_mode: 'HTML',
-        reply_parameters: { message_id: lastMsgId }
+        reply_parameters: { message_id: lastMsgId },
       })
 
       lastMsgId = reply.message_id
     }
   } catch (error) {
     return await ctx.reply('Sorry, couldn\'t get any memes.', {
-      reply_parameters: { message_id: ctx.msgId }
+      reply_parameters: { message_id: ctx.msgId },
     })
   }
 }

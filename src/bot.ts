@@ -4,7 +4,7 @@ import type { BotContext } from '@/types/bot'
 
 import { Bot } from 'grammy'
 
-import { contextMiddleware } from './middleware'
+import { contextMiddleware } from '@/middleware'
 import {
   information,
   sticker,
