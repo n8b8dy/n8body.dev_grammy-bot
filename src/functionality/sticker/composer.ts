@@ -1,5 +1,5 @@
 import { Composer } from 'grammy'
-import { stickerHandler } from '@/commands/sticker/sticker'
+import { stickerHandler } from '@/functionality/sticker/sticker'
 
 export const sticker = new Composer()
 

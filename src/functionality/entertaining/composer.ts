@@ -1,5 +1,5 @@
 import { Composer } from 'grammy'
-import { memeHandler } from '@/commands/entertaining/meme'
+import { memeHandler } from '@/functionality/entertaining/meme'
 
 export const entertaining = new Composer()
 

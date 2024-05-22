@@ -4,18 +4,19 @@ import type { BotContext } from '@/types/bot'
 
 import { Bot } from 'grammy'
 
-import { contextMiddleware } from '@/middleware'
-import { information } from '@/commands'
-import { sticker } from '@/commands'
-import { entertaining } from '@/commands'
-import { creator } from '@/commands'
-
+import { contextMiddleware } from './middleware'
+import {
+  information,
+  sticker,
+  entertaining,
+  creator,
+} from '@/functionality'
 const bot = new Bot<BotContext>(process.env.BOT_TOKEN as string)
 
 // middleware
 bot.use(contextMiddleware)
 
-// commands
+// functionality
 bot.use(information)
 bot.use(sticker)
 bot.use(entertaining)
