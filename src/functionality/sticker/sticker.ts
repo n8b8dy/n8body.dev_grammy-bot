@@ -1,23 +1,13 @@
-import type { CommandMiddleware, Context } from 'grammy'
-import { GrammyError } from 'grammy'
+import type { Filter } from 'grammy'
+import type { BotContext } from '@/types/bot'
 
-export const stickerHandler: CommandMiddleware<Context> = async (ctx) => {
-  const stickerId = ctx.match.trim().split(' ')[0]
+export async function stickerHandler(ctx: Filter<BotContext, 'message:sticker'>) {
+  if (ctx.chat.type !== 'private') return
 
-  if (!stickerId) return await ctx.reply('You didn\'t provide a sticker ID.', {
+  const text = `Sticker's ID is: <code>${ctx.msg.sticker.file_id}</code>`
+
+  await ctx.reply(text, {
+    parse_mode: 'HTML',
     reply_parameters: { message_id: ctx.msgId },
   })
-
-  try {
-    await ctx.replyWithSticker(stickerId, {
-      reply_parameters: { message_id: ctx.msgId },
-    })
-  } catch (error) {
-    if (error instanceof GrammyError) return await ctx.reply(`Couldn't find a sticker with ID <code>${stickerId}</code>!`, {
-      parse_mode: 'HTML',
-      reply_parameters: { message_id: ctx.msgId },
-    })
-
-    throw error
-  }
 }

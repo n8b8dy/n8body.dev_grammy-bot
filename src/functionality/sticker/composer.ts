@@ -1,16 +1,11 @@
+import type { BotContext } from '@/types/bot'
+
 import { Composer } from 'grammy'
+
+import { stickerCommandHandler } from '@/functionality/sticker/stickerCommand'
 import { stickerHandler } from '@/functionality/sticker/sticker'
 
-export const sticker = new Composer()
+export const sticker = new Composer<BotContext>()
 
-sticker.command('sticker', stickerHandler)
-sticker.on('message:sticker', async (ctx) => {
-  if (ctx.chat.type !== 'private') return
-
-  const text = `Sticker's ID is: <code>${ctx.msg.sticker.file_id}</code>`
-
-  await ctx.reply(text, {
-    parse_mode: 'HTML',
-    reply_parameters: { message_id: ctx.msgId },
-  })
-})
+sticker.command('sticker', stickerCommandHandler)
+sticker.on('message:sticker', stickerHandler)
