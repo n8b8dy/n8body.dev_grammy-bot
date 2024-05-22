@@ -24,7 +24,6 @@ model User {
 
 model StartSticker {
   fileId String @id
-  name   String @unique
 }
 
 model BotStory {
