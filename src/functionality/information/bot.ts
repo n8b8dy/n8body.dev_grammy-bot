@@ -1,4 +1,5 @@
-import type { CommandMiddleware, Context } from 'grammy'
+import type { CommandContext } from 'grammy'
+import type { BotContext } from '@/types/bot'
 
 import { GrammyError } from 'grammy'
 import OpenAI from 'openai'
@@ -7,7 +8,7 @@ import prisma from '@/lib/prisma'
 import { asyncThrottle } from '@/utils/perfomance'
 
 // TODO: Send random old story
-export const botHandler: CommandMiddleware<Context> = async (ctx) => {
+export async function botHandler (ctx: CommandContext<BotContext>) {
   const startText = 'Ohoho, let me tell you one very interesting story...'
 
   const oldStory = await prisma.botStory.findFirst({
@@ -23,9 +24,9 @@ export const botHandler: CommandMiddleware<Context> = async (ctx) => {
   })
 
   const openai = new OpenAI({
-    apiKey: process.env.OPENAI_KEY as string,
-    organization: process.env.OPENAI_ORG as string,
-    project: process.env.OPENAI_PROJ as string,
+    apiKey: ctx.config.openai.key,
+    organization: ctx.config.openai.org,
+    project: ctx.config.openai.proj,
   })
 
   const instruction = [

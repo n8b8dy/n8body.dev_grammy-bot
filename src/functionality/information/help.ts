@@ -1,6 +1,7 @@
-import type { CommandMiddleware, Context } from 'grammy'
+import type { CommandContext } from 'grammy'
+import type { BotContext } from '@/types/bot'
 
-export const helpHandler: CommandMiddleware<Context> = async (ctx) => {
+export async function helpHandler (ctx: CommandContext<BotContext>) {
   const text = [
     'Here\'s a list of all the functionality of the bot:',
     '',

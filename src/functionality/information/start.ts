@@ -1,7 +1,8 @@
-import type { CommandMiddleware, Context } from 'grammy'
+import type { CommandContext } from 'grammy'
+import type { BotContext } from '@/types/bot'
 import prisma from '@/lib/prisma'
 
-export const startHandler: CommandMiddleware<Context> = async (ctx) => {
+export async function startHandler(ctx: CommandContext<BotContext>) {
   const text = [
     `Welcome, ${ctx.from?.first_name || 'user'}!`,
     'This is a bot made by n8body for educational and experimental purposes.',

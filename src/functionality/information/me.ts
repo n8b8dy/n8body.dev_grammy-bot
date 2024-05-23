@@ -1,8 +1,11 @@
-import type { CommandMiddleware, Context } from 'grammy'
+import type { CommandContext } from 'grammy'
+import type { BotContext } from '@/types/bot'
+
 import { GrammyError, InputMediaBuilder } from 'grammy'
+
 import { eRT } from '@/utils/text'
 
-export const meHandler: CommandMiddleware<Context> = async (ctx) => {
+export async function meHandler(ctx: CommandContext<BotContext>) {
   if (!ctx.from) return
 
   const text = [
