@@ -8,9 +8,10 @@ import { contextMiddleware } from '@/middleware'
 import {
   information,
   sticker,
-  entertaining,
-  creator,
   eastereggs,
+  entertaining,
+
+  creator,
 } from '@/functionality'
 
 const bot = new Bot<BotContext>(process.env.BOT_TOKEN as string)
@@ -22,7 +23,9 @@ bot.use(contextMiddleware)
 bot.use(information)
 bot.use(sticker)
 bot.use(entertaining)
-bot.use(creator)
 bot.use(eastereggs)
+
+// verification middleware
+bot.use(creator)
 
 bot.start().catch(error => console.error(error))
