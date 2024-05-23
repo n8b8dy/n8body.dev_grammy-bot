@@ -10,7 +10,9 @@ import {
   sticker,
   entertaining,
   creator,
+  eastereggs,
 } from '@/functionality'
+
 const bot = new Bot<BotContext>(process.env.BOT_TOKEN as string)
 
 // middleware
@@ -21,5 +23,6 @@ bot.use(information)
 bot.use(sticker)
 bot.use(entertaining)
 bot.use(creator)
+bot.use(eastereggs)
 
 bot.start().catch(error => console.error(error))
