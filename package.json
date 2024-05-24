@@ -13,8 +13,8 @@
   },
   "packageManager": "pnpm@9.1.1",
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "n8body",
+  "license": "MIT",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-typescript": "^11.1.6",
