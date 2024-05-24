@@ -1,0 +1,6 @@
+services:
+  bot:
+    build: .
+    image: n8body.dev/grammy-bot
+    container_name: grammy-bot
+    network_mode: host
