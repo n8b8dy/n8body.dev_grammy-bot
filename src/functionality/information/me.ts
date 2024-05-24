@@ -17,8 +17,15 @@ export async function meHandler(ctx: CommandContext<BotContext>) {
     `Premium: ${eRT(ctx.from.is_premium)}`,
   ].join('\n')
 
+  const replyWithoutMedia = async () => await ctx.reply(text, {
+    parse_mode: 'HTML',
+    reply_parameters: { message_id: ctx.msgId },
+  })
+
   try {
     const profilePhotos = await ctx.api.getUserProfilePhotos(ctx.from.id)
+    if (profilePhotos.total_count === 0) return await replyWithoutMedia()
+
     const mediaGroup = profilePhotos.photos.slice(0, 10).map(photoSize => InputMediaBuilder.photo(photoSize[0].file_id))
 
     mediaGroup[0].caption = text
@@ -29,10 +36,7 @@ export async function meHandler(ctx: CommandContext<BotContext>) {
     })
 
   } catch (error) {
-    if (error instanceof GrammyError) return await ctx.reply(text, {
-      parse_mode: 'HTML',
-      reply_parameters: { message_id: ctx.msgId },
-    })
+    if (error instanceof GrammyError) return await replyWithoutMedia()
 
     throw error
   }
