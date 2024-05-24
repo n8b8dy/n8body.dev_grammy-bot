@@ -2,9 +2,11 @@ import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 import { GrammyError } from 'grammy'
 import prisma from '@/lib/prisma'
-
+import { verifyCreator } from '@/utils/verifications'
 
 export async function addStartStickerHandler(ctx: CommandContext<BotContext>) {
+  if (!verifyCreator(ctx)) return
+
   const stickerIds = ctx.match.split(' ').filter(str => str !== '')
 
   if (stickerIds.length === 0) return await ctx.reply('You didn\'t provide any stickers IDs.', {

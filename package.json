@@ -2,6 +2,7 @@
   "name": "n8body.dev_grammy-bot",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "dist/bot.cjs",
   "type": "module",
   "scripts": {
