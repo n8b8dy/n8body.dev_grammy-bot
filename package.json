@@ -2,22 +2,25 @@
   "name": "n8body.dev_grammy-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "build/bot.js",
+  "main": "dist/bot.cjs",
   "type": "module",
   "scripts": {
     "build": "rollup -c",
-    "start": "rollup -c && node build/bot.js",
+    "migrate": "prisma migrate deploy",
+    "start": "node dist/bot.cjs",
+    "start:migrate": "pnpm prisma migrate deploy && pnpm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "packageManager": "pnpm@9.1.1",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/html-escaper": "^3.0.2",
     "@types/node": "^20.12.12",
     "esbuild": "^0.21.3",
-    "prisma": "^5.14.0",
     "rollup": "^4.17.2",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-typescript-paths": "^1.5.0",
@@ -30,6 +33,7 @@
     "dotenv": "^16.4.5",
     "grammy": "^1.23.0",
     "html-escaper": "^3.0.3",
-    "openai": "^4.47.1"
+    "openai": "^4.47.1",
+    "prisma": "^5.14.0"
   }
 }

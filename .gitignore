@@ -5,7 +5,7 @@
 .yarn/install-state.gz
 
 # production
-/build
+/dist
 
 # env files
 .env
