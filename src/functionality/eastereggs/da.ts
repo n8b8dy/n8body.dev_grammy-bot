@@ -1,11 +1,11 @@
+import type { Filter, NextFunction } from 'grammy'
 import type { BotContext } from '@/types/bot'
-import { Filter } from 'grammy'
 
-export async function daHandler(ctx: Filter<BotContext, 'message:text'>) {
+export async function daHandler(ctx: Filter<BotContext, 'message:text'>, next: NextFunction) {
   const match = ctx.msg.text.match(/\s*([dд]+[aа]+\W*)$/i)
-  if (!match) return
+  if (!match) return await next()
 
-  if (Math.random() > 0.2) return
+  if (Math.random() > 0.2) return await next()
 
   await ctx.reply(`Пиз${match[1].toLowerCase()}`, {
     reply_parameters: { message_id: ctx.msgId }
