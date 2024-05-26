@@ -12,13 +12,13 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --prod --frozen-lockfil
 
 FROM base AS build
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm i --frozen-lockfile
-RUN pnpm prisma generate
 RUN pnpm build
 
 FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
-COPY --from=build /app/prisma /app/prisma
+
+RUN pnpm prisma generate
 
 EXPOSE 8081
 CMD [ "pnpm", "start:migrate" ]
