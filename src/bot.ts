@@ -14,7 +14,7 @@ import {
   creator,
 } from '@/functionality'
 
-const bot = new Bot<BotContext>(process.env.BOT_TOKEN as string)
+const bot = new Bot<BotContext>(process.env.BOT_TOKEN)
 
 // middleware
 bot.use(contextMiddleware)
