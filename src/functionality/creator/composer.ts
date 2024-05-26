@@ -2,10 +2,8 @@ import type { BotContext } from '@/types/bot'
 
 import { Composer } from 'grammy'
 
-import { addStartStickerHandler } from '@/functionality/creator/addStartSticker'
-import { removeStartStickerHandler } from '@/functionality/creator/removeStartSticker'
+import { startStickerCommandHandler } from '@/functionality/creator/startSticker_command'
 
 export const creator = new Composer<BotContext>()
 
-creator.command(['addStartSticker', 'addStartStickers'], addStartStickerHandler)
-creator.command(['removeStartSticker', 'removeStartStickers'], removeStartStickerHandler)
+creator.command(['startSticker', 'startStickers'], startStickerCommandHandler)
