@@ -2,7 +2,7 @@ import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 import prisma from '@/lib/prisma'
 
-export async function startHandler(ctx: CommandContext<BotContext>) {
+export async function startCommandHandler(ctx: CommandContext<BotContext>) {
   const text = [
     `Welcome, ${ctx.from?.first_name || 'user'}!`,
     'This is a bot made by n8body for educational and experimental purposes.',

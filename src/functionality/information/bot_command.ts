@@ -8,7 +8,7 @@ import prisma from '@/lib/prisma'
 import { asyncThrottle } from '@/utils/perfomance'
 
 // TODO: Send random old story
-export async function botHandler (ctx: CommandContext<BotContext>) {
+export async function botCommandHandler (ctx: CommandContext<BotContext>) {
   const startText = 'Ohoho, let me tell you one very interesting story...'
 
   const oldStory = await prisma.botStory.findFirst({

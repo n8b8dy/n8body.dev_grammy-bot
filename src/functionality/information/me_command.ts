@@ -5,7 +5,7 @@ import { GrammyError, InputMediaBuilder } from 'grammy'
 
 import { eRT } from '@/utils/text'
 
-export async function meHandler(ctx: CommandContext<BotContext>) {
+export async function meCommandHandler(ctx: CommandContext<BotContext>) {
   if (!ctx.from) return
 
   const text = [

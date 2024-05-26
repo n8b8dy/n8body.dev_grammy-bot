@@ -10,7 +10,7 @@ type MemeResponse = {
   }>
 }
 
-export async function memeHandler(ctx: CommandContext<BotContext>) {
+export async function memeCommandHandler(ctx: CommandContext<BotContext>) {
   let amount = Number(ctx.match.trim().split(' ')[0])
   if (Number.isNaN(amount) || amount > 8 || amount < 1) amount = 1
 

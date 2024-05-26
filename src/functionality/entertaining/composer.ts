@@ -1,7 +1,7 @@
 import type { BotContext } from '@/types/bot'
 import { Composer } from 'grammy'
-import { memeHandler } from '@/functionality/entertaining/meme'
+import { memeCommandHandler } from '@/functionality/entertaining/meme_command'
 
 export const entertaining = new Composer<BotContext>()
 
-entertaining.command(['meme', 'memes'], memeHandler)
+entertaining.command(['meme', 'memes'], memeCommandHandler)

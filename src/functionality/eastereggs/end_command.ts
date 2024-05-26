@@ -2,7 +2,7 @@ import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 import { verifyCreator } from '@/utils/verifications'
 
-export async function endHandler(ctx: CommandContext<BotContext>) {
+export async function endCommandHandler(ctx: CommandContext<BotContext>) {
   if (!ctx.from) return
 
   let text = `Sosatb plus lezhatb, ${ctx.from.first_name}`

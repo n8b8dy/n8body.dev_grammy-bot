@@ -1,7 +1,7 @@
 import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 
-export async function helpHandler (ctx: CommandContext<BotContext>) {
+export async function helpCommandHandler (ctx: CommandContext<BotContext>) {
   const text = [
     'Here\'s a list of all the functionality of the bot:',
     '',
