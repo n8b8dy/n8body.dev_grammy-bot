@@ -10,7 +10,6 @@ import {
   sticker,
   eastereggs,
   entertaining,
-
   creator,
 } from '@/functionality'
 
@@ -24,8 +23,6 @@ bot.use(information)
 bot.use(sticker)
 bot.use(entertaining)
 bot.use(eastereggs)
-
-// verification middleware
 bot.use(creator)
 
 bot.start().catch(error => console.error(error))

@@ -8,6 +8,6 @@ export async function daHandler(ctx: Filter<BotContext, 'message:text'>, next: N
   if (Math.random() > 0.2) return await next()
 
   await ctx.reply(`Пиз${match[1].toLowerCase()}`, {
-    reply_parameters: { message_id: ctx.msgId }
+    reply_parameters: { message_id: ctx.msgId },
   })
 }

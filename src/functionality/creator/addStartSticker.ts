@@ -1,6 +1,8 @@
 import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
+
 import { GrammyError } from 'grammy'
+
 import prisma from '@/lib/prisma'
 import { verifyCreator } from '@/utils/verifications'
 
@@ -25,6 +27,13 @@ export async function addStartStickerHandler(ctx: CommandContext<BotContext>) {
       throw error
     }
 
+    if (await prisma.startSticker.exists({ fileId: stickerId })) {
+      await ctx.reply(`Sticker with ID <code>${stickerId}</code> already exists.`, {
+        parse_mode: 'HTML',
+      })
+      continue
+    }
+
     await prisma.startSticker.create({
       data: {
         fileId: stickerId,
@@ -35,4 +44,8 @@ export async function addStartStickerHandler(ctx: CommandContext<BotContext>) {
       parse_mode: 'HTML',
     })
   }
+
+  await ctx.reply('Finished adding stickers.', {
+    reply_parameters: { message_id: ctx.msgId },
+  })
 }
