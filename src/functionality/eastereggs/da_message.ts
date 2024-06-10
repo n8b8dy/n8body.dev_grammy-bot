@@ -2,7 +2,7 @@ import type { Filter, NextFunction } from 'grammy'
 import type { BotContext } from '@/types/bot'
 
 export async function daMessageHandler(ctx: Filter<BotContext, 'message:text'>, next: NextFunction) {
-  const match = ctx.msg.text.match(/\s*([dд]+[aа]+[\s.,!?\\()01:;"']*)$/)
+  const match = ctx.msg.text.match(/\s*([dд]+[aа]+[\s.,!?\\()01:;"']*)$/i)
   if (!match) return await next()
 
   if (Math.random() > 0.2) return await next()
