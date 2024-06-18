@@ -1,6 +1,9 @@
 import type { Filter, NextFunction } from 'grammy'
 import type { BotContext } from '@/types/bot'
 
+// TODO: Store in DB (maybe...)
+const finalWords = ['додик', 'дурачёк', 'лох', "лошок", "питонист"]
+
 export async function yaMessageHandler(ctx: Filter<BotContext, 'message:text'>, next: NextFunction) {
   const match = ctx.msg.text.match(/\s*((?:[yй]+[aа]+|я+)[\s.,!?\\()01:;"']*)$/i)
   if (!match) return await next()
@@ -11,5 +14,5 @@ export async function yaMessageHandler(ctx: Filter<BotContext, 'message:text'>, 
     reply_parameters: { message_id: ctx.msgId },
   })
 
-  await ctx.reply("додик")
+  await ctx.reply(finalWords[Math.floor(Math.random() * finalWords.length)])
 }
