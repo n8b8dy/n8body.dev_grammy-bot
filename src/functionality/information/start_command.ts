@@ -1,6 +1,12 @@
 import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
+
 import prisma from '@/lib/prisma'
+import { CommandsSuggestions } from '@/suggestions'
+
+CommandsSuggestions.push({
+  command: 'start', description: 'Shows the initial message.'
+})
 
 export async function startCommandHandler(ctx: CommandContext<BotContext>) {
   const text = [

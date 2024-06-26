@@ -3,6 +3,7 @@ import 'dotenv/config'
 import type { BotContext } from '@/types/bot'
 
 import { Bot } from 'grammy'
+import { CommandsSuggestions } from '@/suggestions'
 
 import { contextMiddleware } from '@/middleware'
 import {
@@ -25,4 +26,9 @@ bot.use(entertaining)
 bot.use(eastereggs)
 bot.use(creator)
 
-bot.start().catch(error => console.error(error))
+bot.api.setMyCommands(CommandsSuggestions)
+  .then(() => console.info('Commands suggestions set up successfully!'))
+  .finally(() => {
+    console.info('Starting polling...')
+    bot.start().catch(error => console.error(error))
+  })
