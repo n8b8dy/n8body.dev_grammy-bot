@@ -5,7 +5,7 @@ import prisma from '@/lib/prisma'
 import { CommandsSuggestions } from '@/suggestions'
 
 CommandsSuggestions.push({
-  command: 'start', description: 'Shows the initial message.'
+  command: 'start', description: 'Shows the initial message.',
 })
 
 export async function startCommandHandler(ctx: CommandContext<BotContext>) {

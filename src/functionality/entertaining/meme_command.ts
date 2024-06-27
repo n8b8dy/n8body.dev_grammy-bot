@@ -1,6 +1,7 @@
 import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 import { eRT } from '@/utils/text'
+import { CommandsSuggestions } from '@/suggestions'
 
 type MemeResponse = {
   count: number
@@ -9,6 +10,10 @@ type MemeResponse = {
     preview: Array<string>
   }>
 }
+
+CommandsSuggestions.push({
+  command: 'meme', description: 'Sends a random meme or a specified amount of memes.',
+})
 
 export async function memeCommandHandler(ctx: CommandContext<BotContext>) {
   let amount = Number(ctx.match.trim().split(' ')[0])

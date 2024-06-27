@@ -5,10 +5,14 @@ import { GrammyError } from 'grammy'
 import OpenAI from 'openai'
 
 import prisma from '@/lib/prisma'
+import { CommandsSuggestions } from '@/suggestions'
 import { asyncThrottle } from '@/utils/perfomance'
 
-// TODO: Send random old story
-export async function botCommandHandler (ctx: CommandContext<BotContext>) {
+CommandsSuggestions.push({
+  command: 'bot', description: 'Tells you a beautiful story about the origin of the bot...',
+})
+
+export async function botCommandHandler(ctx: CommandContext<BotContext>) {
   const startText = 'Ohoho, let me tell you one very interesting story...'
 
   const oldStory = await prisma.botStory.findFirst({

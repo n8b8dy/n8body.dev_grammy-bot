@@ -3,7 +3,12 @@ import type { BotContext } from '@/types/bot'
 
 import { GrammyError, InputMediaBuilder } from 'grammy'
 
+import { CommandsSuggestions } from '@/suggestions'
 import { eRT } from '@/utils/text'
+
+CommandsSuggestions.push({
+  command: 'me', description: 'Shows information about your account.',
+})
 
 export async function meCommandHandler(ctx: CommandContext<BotContext>) {
   if (!ctx.from) return

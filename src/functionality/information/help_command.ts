@@ -1,7 +1,18 @@
 import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 
-export async function helpCommandHandler (ctx: CommandContext<BotContext>) {
+import { CommandsSuggestions } from '@/suggestions'
+
+CommandsSuggestions.push(
+  {
+    command: 'help', description: 'Shows all the bot\'s functionality.',
+  },
+  {
+    command: 'commands', description: 'Alias for /help command.',
+  },
+)
+
+export async function helpCommandHandler(ctx: CommandContext<BotContext>) {
   const text = [
     'Here is a list of all the bot\'s functionality:',
     '',
@@ -29,6 +40,6 @@ export async function helpCommandHandler (ctx: CommandContext<BotContext>) {
 
   await ctx.reply(text, {
     parse_mode: 'HTML',
-    reply_parameters: { message_id: ctx.msgId }
+    reply_parameters: { message_id: ctx.msgId },
   })
 }
