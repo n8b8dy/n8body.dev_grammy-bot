@@ -7,7 +7,7 @@ export async function daMessageHandler(ctx: Filter<BotContext, 'message:text'>, 
   const match = ctx.msg.text.match(/(?:^|\s+)*([dд]+[aа]+[\s.,!?\\()01:;"']*)$/i)
   if (!match) return await next()
 
-  if (Math.random() > 0.2) return await next()
+  if (Math.random() > 0.1) return await next()
 
   await ctx.reply(`${wordVariants[Math.floor(Math.random() * wordVariants.length)]}${match[1].toLowerCase()}`, {
     reply_parameters: { message_id: ctx.msgId },
