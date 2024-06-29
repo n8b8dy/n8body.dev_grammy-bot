@@ -2,7 +2,7 @@ import type { CommandContext } from 'grammy'
 import type { BotContext } from '@/types/bot'
 
 import { GrammyError } from 'grammy'
-import OpenAI from 'openai'
+import OpenAI, { OpenAIError } from 'openai'
 
 import prisma from '@/lib/prisma'
 import { CommandsSuggestions } from '@/suggestions'
@@ -42,13 +42,37 @@ export async function botCommandHandler(ctx: CommandContext<BotContext>) {
     // `Write it in a language with IETF language tag ${ctx.from?.language_code || 'EN'}.`
   ].join(' ')
 
-  const stream = await openai.chat.completions.create({
-    model: 'gpt-4o',
-    stream: true,
-    messages: [
-      { role: 'system', content: instruction },
-    ],
-  })
+  let stream: Awaited<ReturnType<typeof openai.chat.completions.create>>
+  try {
+    stream = await openai.chat.completions.create({
+      model: 'gpt-4o',
+      stream: true,
+      messages: [
+        { role: 'system', content: instruction },
+      ],
+    })
+  } catch (error: unknown) {
+    console.log(`BotError: `, error)
+
+    if (error instanceof OpenAIError) {
+      await ctx.api.sendMessage(
+        ctx.config.creatorId,
+        `BotError: An error occurred while trying to generate a bot story: <code>${error.message}</code>`,
+        { parse_mode: 'HTML' },
+      )
+    } else {
+      await ctx.api.sendMessage(
+        ctx.config.creatorId,
+        `BotError: An error occurred while trying to generate a bot story, check the logs!`,
+      )
+    }
+
+    if (oldStory) await ctx.reply(`${startText}\n\n${oldStory.content}`, {
+      reply_parameters: { message_id: ctx.msgId },
+    })
+
+    return
+  }
 
   const reply = await ctx.reply(startText, {
     reply_parameters: { message_id: ctx.msgId },
